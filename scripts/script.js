@@ -10,13 +10,11 @@ let like = document.querySelectorAll('.elements__like');
 let likeButton = document.querySelector('.elements__like');
 
 function openPopup() {
-    popup.style.display = 'block';
-    document.body.style.overflow = 'hidden';
+    popup.classList.add('popup_opened');
 }
 
 function closePopup() {
-    popup.style.display = 'none';
-    document.body.style.overflow = 'unset';
+    popup.classList.remove('popup_opened');
 }
 
 function formSubmitHandler(evt) {
