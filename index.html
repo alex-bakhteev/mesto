@@ -13,13 +13,12 @@
     <div class="page">
         <header class="header">
             <img class="header__logo" src="images/logo.svg" alt="Логотип">
-            <div class="header__line"></div>
         </header>
         <main>
             <section class="profile">
                 <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар">
                 <div class="profile__info">
-                    <div class="profile__first-row">
+                    <div class="profile__row">
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
                         <button class="profile__edit-button" type="button"></button>
                     </div>
@@ -31,7 +30,7 @@
                 <div class="elements__mask">
                     <img class="elements__element" src="./images/karachayevsk.png" alt="Карачаевск">
                     <div class="elements__caption">
-                        <p class="elements__text">Карачаевск</p>
+                        <h2 class="elements__text">Карачаевск</h2>
                         <button class="elements__like" type="button"></button>
                     </div>
 
@@ -39,7 +38,7 @@
                 <div class="elements__mask">
                     <img class="elements__element" src="./images/elbrus.png" alt="Гора Эльбрус">
                     <div class="elements__caption">
-                        <p class="elements__text">Гора Эльбрус</p>
+                        <h2 class="elements__text">Гора Эльбрус</h2>
                         <button class="elements__like" type="button"></button>
                     </div>
 
@@ -47,7 +46,7 @@
                 <div class="elements__mask">
                     <img class="elements__element" src="./images/dombay.png" alt="Домбай">
                     <div class="elements__caption">
-                        <p class="elements__text">Домбай</p>
+                        <h2 class="elements__text">Домбай</h2>
                         <button class="elements__like" type="button"></button>
                     </div>
 
@@ -55,7 +54,7 @@
                 <div class="elements__mask">
                     <img class="elements__element" src="./images/elbrus.png" alt="Гора Эльбрус">
                     <div class="elements__caption">
-                        <p class="elements__text">Гора Эльбрус</p>
+                        <h2 class="elements__text">Гора Эльбрус</h2>
                         <button class="elements__like" type="button"></button>
                     </div>
 
@@ -63,7 +62,7 @@
                 <div class="elements__mask">
                     <img class="elements__element" src="./images/dombay.png" alt="Домбай">
                     <div class="elements__caption">
-                        <p class="elements__text">Домбай</p>
+                        <h2 class="elements__text">Домбай</h2>
                         <button class="elements__like" type="button"></button>
                     </div>
 
@@ -71,7 +70,7 @@
                 <div class="elements__mask">
                     <img class="elements__element" src="./images/karachayevsk.png" alt="Карачаево-Черкессия">
                     <div class="elements__caption">
-                        <p class="elements__text">Карачаево-Черкессия</p>
+                        <h2 class="elements__text">Карачаево-Черкессия</h2>
                         <button class="elements__like" type="button"></button>
                     </div>
 
@@ -85,14 +84,14 @@
     </div>
     <div class="popup">
         <button class="popup__close-icon" type="button"></button>
-        <form class="popup__container">
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <input class="popup__field-name" type="text" value="Жак-Ив Кусто">
-            <div class="popup__line"></div>
-            <input class="popup__field-occupation" type="text" value="Исследователь океана">
-            <div class="popup__line"></div>
-            <button class="popup__submit" type="submit">Сохранить</button>
-        </form>
+        <div class="popup__container">
+            <form class="popup__form" name="popup__form">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <input class="popup__field popup__field_type_name" type="text" value="Жак-Ив Кусто" name="form__name">
+                <input class="popup__field popup__field_type_occupation" type="text" value="Исследователь океана" name="form__occupation">
+                <button class="popup__submit" type="submit" name="form__submit">Сохранить</button>
+            </form>
+        </div>
     </div>
     <script src="scripts/script.js"></script>
 </body>

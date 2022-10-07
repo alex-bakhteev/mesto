@@ -1,33 +1,29 @@
 .popup__close-icon {
     background: url(../../../images/close-icon.svg);
     background-repeat: no-repeat;
-    position: relative;
+    position: fixed;
     background-size: cover;
     width: 32px;
     height: 32px;
-    margin: 12.1% auto auto 67.4%;
+    margin-bottom: 52vh;
+    margin-left: 37vw;
     border-style: none;
+    cursor: pointer;
 }
 
 .popup__close-icon:hover {
     opacity: 0.6;
 }
 
-@media screen and (max-width: 1279px) {
-    .popup__close-icon {
-        margin: 20vw 30vw 0 70vw;
-    }
-}
-
 @media screen and (max-width: 1024px) {
     .popup__close-icon {
-        margin: 27.2vw 25vw 0 75vw;
+        margin-left: 47%;
     }
 }
 
 @media screen and (max-width: 768px) {
     .popup__close-icon {
-        margin: 27.2vw 15vw 0 85vw;
+        margin-left: 65%;
     }
 }
 
@@ -35,6 +31,7 @@
     .popup__close-icon {
         width: 20px;
         height: 20px;
-        margin: 27.2vw 6vw 0 87.8vw;
+        margin-left: 80vw;
+        margin-bottom: 66vh;
     }
 }

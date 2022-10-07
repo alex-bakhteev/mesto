@@ -1,7 +1,7 @@
 .elements__mask {
     background: #FFFFFF;
     border-radius: 10px;
-    height: 361px;
+    max-height: 361px;
     max-width: 282px;
     margin: 0 auto 0;
 }

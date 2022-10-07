@@ -6,10 +6,21 @@
     line-height: 48px;
     color: #FFFFFF;
     margin: 0;
+    max-width: 500px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1279px) {
+    .profile__title {
+        max-width: 39vw;
+    }
 }
 
 @media screen and (max-width: 768px) {
     .profile__title {
+        max-width: 75vw;
         font-size: 27px;
         line-height: 33px;
     }
