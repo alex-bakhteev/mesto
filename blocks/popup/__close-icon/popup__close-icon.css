@@ -1,11 +1,11 @@
 .popup__close-icon {
     background: url(../../../images/close-icon.svg);
     background-repeat: no-repeat;
-    position: fixed;
     background-size: cover;
     width: 32px;
     height: 32px;
-    margin-bottom: 52vh;
+    margin-top: -40px;
+    margin-bottom: 8px;
     margin-left: 37vw;
     border-style: none;
     cursor: pointer;
@@ -31,7 +31,8 @@
     .popup__close-icon {
         width: 20px;
         height: 20px;
-        margin-left: 80vw;
-        margin-bottom: 66vh;
+        margin-top: -36px;
+        margin-left: 81.5vw;
+        margin-bottom: 16px;
     }
 }

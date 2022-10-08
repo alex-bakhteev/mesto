@@ -1,4 +1,5 @@
 .element__element {
     max-width: 282px;
     width: 100%;
+    margin: 0;
 }
