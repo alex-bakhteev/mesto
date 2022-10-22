@@ -1,4 +1,5 @@
 .elements__mask {
+    position: relative;
     background: #FFFFFF;
     border-radius: 10px;
     max-width: 282px;

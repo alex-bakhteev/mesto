@@ -1,0 +1,10 @@
+.popup__close-image {
+    margin: 0 -40px 8px 0;
+    align-self: flex-end;
+}
+
+@media screen and (max-width: 505px) {
+    .popup__close-image {
+        margin-right: 0;
+    }
+}
