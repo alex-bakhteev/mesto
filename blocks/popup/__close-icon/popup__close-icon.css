@@ -4,9 +4,8 @@
     background-size: cover;
     width: 32px;
     height: 32px;
-    margin-top: -40px;
-    margin-bottom: 8px;
-    margin-left: 37vw;
+    margin: -40px -40px 8px 0;
+    align-self: flex-end;
     border-style: none;
     cursor: pointer;
 }
@@ -15,24 +14,12 @@
     opacity: 0.6;
 }
 
-@media screen and (max-width: 1024px) {
-    .popup__close-icon {
-        margin-left: 47%;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .popup__close-icon {
-        margin-left: 65%;
-    }
-}
-
-@media screen and (max-width: 505px) {
+@media screen and (max-width: 577px) {
     .popup__close-icon {
         width: 20px;
         height: 20px;
         margin-top: -36px;
-        margin-left: 81.5vw;
+        margin-right: 0;
         margin-bottom: 16px;
     }
 }
