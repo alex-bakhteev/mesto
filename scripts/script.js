@@ -55,7 +55,6 @@ function addCard(name, link) {
     elementsImage.alt = name;
     elementsDelete.addEventListener('click', () => { elementsDelete.closest('.elements__mask').remove(); });
     likeButton.addEventListener('click', () => { likeButton.classList.toggle('elements__like_active'); });
-    elementsContainer.prepend(elementsCard);
 
     elementsImage.addEventListener('click', () => {
         popupImage.src = link;
@@ -63,17 +62,27 @@ function addCard(name, link) {
         popupCaption.textContent = name;
         popupEnlargedImage.classList.add('popup_opened');
     });
+    return elementsCard;
 }
 
 function addBaseCards() {
     initialCards.forEach(item => {
-        addCard(item.name, item.link);
+        const newCard = addCard(item.name, item.link);
+        renderCard(newCard);
     });
 }
 
-function openPopup(popup) {
+function renderCard(elementsCard) {
+    elementsContainer.prepend(elementsCard);
+}
+
+function openPropfilePopup() {
     nameInput.value = profileTitle.textContent;
     jobInput.value = profileSubtitle.textContent;
+    openPopup(popupEdit);
+}
+
+function openPopup(popup) {
     popup.classList.add('popup_opened');
 }
 
@@ -92,13 +101,14 @@ function handleSubmitFormAdd(evt) {
     evt.preventDefault();
     const cardName = captionInput.value;
     const cardLink = linkInput.value;
-    addCard(cardName, cardLink);
+    const newCard = addCard(cardName, cardLink);
+    renderCard(newCard);
     formAdd.reset();
     closePopup(popupAdd);
 }
 
 addBaseCards();
-editButton.addEventListener('click', () => { openPopup(popupEdit) });
+editButton.addEventListener('click', openPropfilePopup);
 addButton.addEventListener('click', () => { openPopup(popupAdd) });
 closeIcons.forEach((button) => {
     const popup = button.closest('.popup');
