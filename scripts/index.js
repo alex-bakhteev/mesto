@@ -1,3 +1,4 @@
+const popups = Array.from(document.querySelectorAll('.popup__container'));
 const popupEdit = document.querySelector('.popup_edit');
 const popupAdd = document.querySelector('.popup_add');
 const editButton = document.querySelector('.profile__edit-button');
@@ -90,6 +91,13 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
 
+function closePopupClick(evt) {
+    if (evt.target.classList.contains('popup')) {
+        const popupItem = evt.target.closest('.popup');
+        closePopup(popupItem);
+    }
+}
+
 function handleSubmitFormEdit(evt) {
     evt.preventDefault();
     profileTitle.textContent = nameInput.value;
@@ -107,6 +115,7 @@ function handleSubmitFormAdd(evt) {
     closePopup(popupAdd);
 }
 
+
 addBaseCards();
 editButton.addEventListener('click', openPropfilePopup);
 addButton.addEventListener('click', () => { openPopup(popupAdd) });
@@ -114,5 +123,14 @@ closeIcons.forEach((button) => {
     const popup = button.closest('.popup');
     button.addEventListener('click', () => closePopup(popup));
 });
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        popups.forEach((push) => {
+            closePopup(push);
+        });
+    }
+});
+document.addEventListener('mousedown', closePopupClick);
+
 formEdit.addEventListener('submit', handleSubmitFormEdit);
 formAdd.addEventListener('submit', handleSubmitFormAdd);
