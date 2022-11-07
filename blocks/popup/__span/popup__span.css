@@ -5,6 +5,12 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
+    min-height: 30px;
     color: #FF0000;
-    margin: 0 0 13px 36px;
+    visibility: hidden;
+    margin: 0 36px 13px 36px;
+}
+
+.popup__span:last-of-type {
+    margin-bottom: 31px;
 }
