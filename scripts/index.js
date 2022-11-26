@@ -8,7 +8,6 @@ const closeIcons = Array.from(document.querySelectorAll('.popup__close-icon'));
 const addButton = document.querySelector('.profile__add-button');
 const formEdit = popupEdit.querySelector('.popup__form');
 const formAdd = popupAdd.querySelector('.popup__form-add');
-const buttonSubmitFormAdd = formAdd.querySelector('.popup__submit');
 const nameInput = document.querySelector('.popup__field_type_name');
 const jobInput = document.querySelector('.popup__field_type_occupation');
 const captionInput = document.querySelector('.popup__field_type_caption');
@@ -20,8 +19,6 @@ const cardTemplate = document.querySelector('#card').content.querySelector('.ele
 const popupEnlargedImage = document.querySelector('.popup_enlarged-image');
 const popupImage = document.querySelector('.popup__image');
 const popupCaption = document.querySelector('.popup__caption');
-const popupSpanName = formEdit.querySelector('.popup__span_name');
-const popupSpanAbout = formEdit.querySelector('.popup__span_about');
 
 const initialCards = [
     {
@@ -62,16 +59,14 @@ const config = {
 
 function openPropfilePopup() {
     nameInput.value = profileTitle.textContent;
-    nameInput.classList.remove('popup__field_type_error');
     jobInput.value = profileSubtitle.textContent;
-    jobInput.classList.remove('popup__field_type_error');
-    popupSpanName.classList.remove('popup__span_active');
-    popupSpanAbout.classList.remove('popup__span_active');
     openPopup(popupEdit);
 }
 
 export default function openPopup(popup) {
-    popup.classList.remove('popup_disabled');
+    const validatorPopup = new FormValidator(config, popup);
+    validatorPopup.clearInputError(formEdit);
+    validatorPopup.clearInputError(formAdd);
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', handleClosePopupByEsc);
 }
@@ -79,7 +74,10 @@ export default function openPopup(popup) {
 function closePopup(popup) {
     setTimeout(function () {
         popup.classList.remove('popup_opened');
+        // Удаление модификатора плавного закрытия
+        popup.classList.remove('popup_disabled');
     }, 450);
+    // Добавление модификатора плавного закрытия
     popup.classList.add('popup_disabled');
     document.removeEventListener('keydown', handleClosePopupByEsc);
 }
@@ -110,16 +108,25 @@ function handleSubmitFormAdd(evt) {
     const cardName = captionInput.value;
     const cardLink = linkInput.value;
     const newCard = handleCards.addCard(cardName, cardLink);
-    handleCards.renderCard(newCard);
+    renderCard(newCard);
     formAdd.reset();
     closePopup(popupAdd);
-    buttonSubmitFormAdd.disabled = true;
-    buttonSubmitFormAdd.classList.add('popup__submit_disabled');
+    validatorPopupAdd.enableButton();
+}
+
+function addBaseCards() {
+    initialCards.forEach(item => {
+        const newCard = handleCards.addCard(item.name, item.link);
+        renderCard(newCard);
+    });
+}
+
+function renderCard(card) {
+    cardsContainer.prepend(card);
 }
 
 const handleCards = new Card(initialCards, cardsContainer, cardTemplate, popupImage, popupCaption, popupEnlargedImage);
-handleCards.addBaseCards();
-
+addBaseCards();
 editButton.addEventListener('click', openPropfilePopup);
 addButton.addEventListener('click', () => { openPopup(popupAdd) });
 closeIcons.forEach((button) => {
@@ -132,6 +139,6 @@ formEdit.addEventListener('submit', handleSubmitFormEdit);
 formAdd.addEventListener('submit', handleSubmitFormAdd);
 
 const validatorPopupEdit = new FormValidator(config, popupEdit);
-validatorPopupEdit.enableValidation();
+validatorPopupEdit.setEventListeners();
 const validatorPopupAdd = new FormValidator(config, popupAdd);
-validatorPopupAdd.enableValidation();
+validatorPopupAdd.setEventListeners();
