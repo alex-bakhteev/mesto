@@ -25,12 +25,9 @@ export default class FormValidator {
     };
 
     clearInputError() {
-        this._inputList = Array.from(this._formType.querySelectorAll(this._inputSelector));
         this._inputList.forEach(input => {
             this._errorElement = this._formType.querySelector(`${this._inputErrorClass}${input.name}`);
-            input.classList.remove(this._invalidInputClass);
-            this._errorElement.textContent = '';
-            this._errorElement.classList.remove(this._inputErrorClassActive);
+            this._hideInputError(input);
         });
     };
 
@@ -71,7 +68,6 @@ export default class FormValidator {
     setEventListeners() {
         this._inputList = Array.from(this._formType.querySelectorAll(this._inputSelector));
         this._submitButton = this._formType.querySelector(this._submitButtonSelector);
-        this.clearInputError();
         this._inputList.forEach(input => {
             input.addEventListener('input', () => {
                 this._checkInputValidity(input);

@@ -57,6 +57,12 @@ const config = {
     inputErrorClassActive: 'popup__span_active'
 };
 
+const handleCards = new Card(initialCards, cardsContainer, cardTemplate, popupImage, popupCaption, popupEnlargedImage);
+const validatorPopupEdit = new FormValidator(config, popupEdit);
+validatorPopupEdit.setEventListeners();
+const validatorPopupAdd = new FormValidator(config, popupAdd);
+validatorPopupAdd.setEventListeners();
+
 function openPropfilePopup() {
     nameInput.value = profileTitle.textContent;
     jobInput.value = profileSubtitle.textContent;
@@ -64,9 +70,9 @@ function openPropfilePopup() {
 }
 
 export default function openPopup(popup) {
-    const validatorPopup = new FormValidator(config, popup);
-    validatorPopup.clearInputError(formEdit);
-    validatorPopup.clearInputError(formAdd);
+    validatorPopupEdit.clearInputError();
+    validatorPopupAdd.clearInputError();
+    formAdd.reset();
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', handleClosePopupByEsc);
 }
@@ -107,16 +113,15 @@ function handleSubmitFormAdd(evt) {
     evt.preventDefault();
     const cardName = captionInput.value;
     const cardLink = linkInput.value;
-    const newCard = handleCards.addCard(cardName, cardLink);
+    const newCard = getCard(cardName, cardLink);
     renderCard(newCard);
-    formAdd.reset();
     closePopup(popupAdd);
     validatorPopupAdd.enableButton();
 }
 
 function addBaseCards() {
     initialCards.forEach(item => {
-        const newCard = handleCards.addCard(item.name, item.link);
+        const newCard = getCard(item.name, item.link);
         renderCard(newCard);
     });
 }
@@ -125,7 +130,11 @@ function renderCard(card) {
     cardsContainer.prepend(card);
 }
 
-const handleCards = new Card(initialCards, cardsContainer, cardTemplate, popupImage, popupCaption, popupEnlargedImage);
+function getCard(name, link) {
+    const newCard = handleCards.addCard(name, link);
+    return newCard;
+}
+
 addBaseCards();
 editButton.addEventListener('click', openPropfilePopup);
 addButton.addEventListener('click', () => { openPopup(popupAdd) });
@@ -137,8 +146,3 @@ document.addEventListener('mousedown', handleClosePopupByOverlay);
 
 formEdit.addEventListener('submit', handleSubmitFormEdit);
 formAdd.addEventListener('submit', handleSubmitFormAdd);
-
-const validatorPopupEdit = new FormValidator(config, popupEdit);
-validatorPopupEdit.setEventListeners();
-const validatorPopupAdd = new FormValidator(config, popupAdd);
-validatorPopupAdd.setEventListeners();
