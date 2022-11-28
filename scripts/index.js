@@ -57,7 +57,6 @@ const config = {
     inputErrorClassActive: 'popup__span_active'
 };
 
-const handleCards = new Card(initialCards, cardsContainer, cardTemplate, popupImage, popupCaption, popupEnlargedImage);
 const validatorPopupEdit = new FormValidator(config, popupEdit);
 validatorPopupEdit.setEventListeners();
 const validatorPopupAdd = new FormValidator(config, popupAdd);
@@ -131,8 +130,8 @@ function renderCard(card) {
 }
 
 function getCard(name, link) {
-    const newCard = handleCards.addCard(name, link);
-    return newCard;
+    const handleCards = new Card(initialCards, cardsContainer, cardTemplate, popupImage, popupCaption, popupEnlargedImage);
+    return handleCards.addCard(name, link);
 }
 
 addBaseCards();
