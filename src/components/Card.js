@@ -1,4 +1,4 @@
-import openPopup from "./index.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 export default class Card {
     constructor(initialCards, cardsContainer, cardTemplate, popupImage, popupCaption, popupEnlargedImage) {
@@ -23,10 +23,8 @@ export default class Card {
         this._likeButtons.forEach(item => { item.addEventListener('click', () => { item.classList.toggle('elements__like_active'); }); });
 
         this._cardImage.addEventListener('click', () => {
-            this._popupImage.src = link;
-            this._popupImage.alt = name;
-            this._popupCaption.textContent = name;
-            openPopup(this._popupEnlargedImage);
+            const handlePopupEnlargedImage = new PopupWithImage('.popup_enlarged-image');
+            handlePopupEnlargedImage.open(name, link);
         });
         return this._card;
     };

@@ -5,18 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Александр Бахтеев">
-    <link href="pages/index.css" rel="stylesheet">
     <title>Место</title>
 </head>
 
 <body>
     <div class="page">
         <header class="header">
-            <img class="header__logo" src="images/logo.svg" alt="Логотип">
+            <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип">
         </header>
         <main>
             <section class="profile">
-                <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар">
+                <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар">
                 <div class="profile__info">
                     <div class="profile__row">
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -82,7 +81,6 @@
 
         </div>
     </template>
-    <script type="module" src="scripts/index.js"></script>
 </body>
 
 </html>
