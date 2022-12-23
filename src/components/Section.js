@@ -11,7 +11,7 @@ export default class Section {
         });
     }
 
-    addItem(card) {
-        this._cardsContainer.prepend(card);
+    addItem(element) {
+        this._cardsContainer.prepend(element);
     }
 }
