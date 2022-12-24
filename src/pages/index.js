@@ -6,51 +6,23 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 
-const popupEdit = document.querySelector('.popup_edit');
-const popupAdd = document.querySelector('.popup_add');
-const buttonEditProfile = document.querySelector('.profile__edit-button');
-const buttonAddProfile = document.querySelector('.profile__add-button');
-const formAdd = popupAdd.querySelector('.popup__form-add');
-const nameInput = document.querySelector('.popup__field_type_name');
-const jobInput = document.querySelector('.popup__field_type_occupation');
-const cardTemplate = document.querySelector('#card').content.querySelector('.elements__mask');
+import {
+    popupEdit,
+    popupAdd,
+    buttonEditProfile,
+    buttonAddProfile,
+    formAdd,
+    nameInput,
+    jobInput,
+    cardTemplate,
+    initialCards,
+    validationConfig,
+} from "../utils/constants.js"
 
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
-const validationConfig = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__field',
-    invalidInputClass: 'popup__field_type_error',
-    submitButtonSelector: '.popup__submit',
-    inactiveButtonClass: 'popup__submit_disabled',
-    inputErrorClass: '.popup__span_',
-    inputErrorClassActive: 'popup__span_active'
-};
+const userInfo = new UserInfo({
+    nameSelector: '.profile__title',
+    aboutSelector: '.profile__subtitle',
+});
 
 const cardsSection = new Section(
     {
@@ -61,20 +33,10 @@ const cardsSection = new Section(
 );
 cardsSection.renderElements();
 
-const userInfo = new UserInfo({
-    nameSelector: '.profile__title',
-    aboutSelector: '.profile__subtitle',
-});
-
-const cardInfo = new UserInfo({
-    captionSelector: '.popup__field_type_caption',
-    linkSelector: '.popup__field_type_link',
-});
-
-const editPopup = new PopupWithForm('.popup_edit', handleSubmitFormEdit);
-editPopup.setEventListeners();
-const addPopup = new PopupWithForm('.popup_add', handleSubmitFormAdd);
-addPopup.setEventListeners();
+const popupEditProfile = new PopupWithForm('.popup_edit', handleSubmitFormEdit);
+popupEditProfile.setEventListeners();
+const popupAddCard = new PopupWithForm('.popup_add', handleSubmitFormAdd);
+popupAddCard.setEventListeners();
 
 const enlargedImagePopup = new PopupWithImage('.popup_enlarged-image');
 enlargedImagePopup.setEventListeners();
@@ -84,20 +46,14 @@ validatorPopupEdit.setEventListeners();
 const validatorPopupAdd = new FormValidator(validationConfig, popupAdd);
 validatorPopupAdd.setEventListeners();
 
-const getUserInfo = () => {
-    const { name, about } = userInfo.getUserInfo();
-}
-
-const getCardInfo = () => {
-    const { caption, link } = cardInfo.getUserInfo();
-}
+const { name, about } = userInfo.getUserInfo();
 
 function openPropfilePopup() {
     validatorPopupEdit.clearInputError();
     const { userName, userAbout } = userInfo.getUserInfo();
     nameInput.value = userName;
     jobInput.value = userAbout;
-    editPopup.open();
+    popupEditProfile.open();
 }
 
 function handleSubmitFormEdit({ name, about }) {
@@ -111,7 +67,7 @@ function handleSubmitFormAdd({ caption, link }) {
     formAdd.reset();
 }
 
-function handleImageClick(caption, link ) {
+function handleImageClick(caption, link) {
     enlargedImagePopup.open(caption, link);
 }
 
@@ -126,4 +82,4 @@ function getCard(caption, link) {
 }
 
 buttonEditProfile.addEventListener('click', () => { openPropfilePopup(); });
-buttonAddProfile.addEventListener('click', () => { addPopup.open(); validatorPopupAdd.clearInputError(); });
+buttonAddProfile.addEventListener('click', () => { popupAddCard.open(); validatorPopupAdd.clearInputError(); });

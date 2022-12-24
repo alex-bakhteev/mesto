@@ -1,5 +1,3 @@
-import PopupWithImage from "./PopupWithImage.js";
-
 export default class Card {
     constructor(cardTemplate, nameCard, linkCard, handleImageClick) {
         this._cardTemplate = cardTemplate;
@@ -21,11 +19,23 @@ export default class Card {
         return this._card;
     }
 
-    _setEventListeners() {
-        this._buttonDelete.addEventListener('click', () => { this._card.remove(); });
+    _setListenerButtonLike() {
         this._buttonLike.addEventListener('click', () => { this._buttonLike.classList.toggle('elements__like_active'); });
+    }
+
+    _setListenerButtonDelete() {
+        this._buttonDelete.addEventListener('click', () => { this._card.remove(); });
+    }
+
+    _setListenerClickImage() {
         this._cardImage.addEventListener('click', () => {
             this._handleImageClick(this._nameCard, this._linkCard);
         });
+    }
+
+    _setEventListeners() {
+        this._setListenerButtonLike();
+        this._setListenerButtonDelete();
+        this._setListenerClickImage();
     }
 };
