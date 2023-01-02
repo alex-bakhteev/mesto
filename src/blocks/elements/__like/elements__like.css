@@ -3,9 +3,9 @@
     background-repeat: no-repeat;
     width: 22px;
     height: 19px;
+    margin: 0;
     border-style: none;
     align-self: center;
-    margin: 0 0 0 auto;
     cursor: pointer;
 }
 

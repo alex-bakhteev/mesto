@@ -1,0 +1,7 @@
+.profile__avatar-container {
+    display: block;
+}
+
+.profile__avatar-container:hover {
+    opacity: 0.2;
+}

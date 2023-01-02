@@ -1,0 +1,27 @@
+.profile__avatar-hover {
+    display: block;
+    background: url(../../../images/pencil.svg) no-repeat;
+    cursor: pointer;
+    position: fixed;
+    margin: -70px 0 0 50px;
+    width: 26px;
+    height: 26px;
+    opacity: 0;
+}
+
+.profile__avatar-hover:hover {
+    opacity: 1;
+}
+
+@media screen and (max-width: 1024px) {
+    .profile__avatar-hover {
+        margin-left: 65px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .profile__avatar-hover {
+        margin-top: -95px;
+        margin-left: 45px;
+    }
+}

@@ -1,8 +1,11 @@
 const popupEdit = document.querySelector('.popup_edit');
 const popupAdd = document.querySelector('.popup_add');
+const popupEditAvatar = document.querySelector('.popup_edit-avatar');
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 const buttonAddProfile = document.querySelector('.profile__add-button');
+const buttonEditAvatar = document.querySelector('.profile__avatar-container');
 const formAdd = popupAdd.querySelector('.popup__form-add');
+const formEditAvatar = popupEditAvatar.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__field_type_name');
 const jobInput = document.querySelector('.popup__field_type_occupation');
 const cardTemplate = document.querySelector('#card').content.querySelector('.elements__mask');
@@ -47,9 +50,12 @@ const validationConfig = {
 export {
     popupEdit,
     popupAdd,
+    popupEditAvatar,
     buttonEditProfile,
     buttonAddProfile,
+    buttonEditAvatar,
     formAdd,
+    formEditAvatar,
     nameInput,
     jobInput,
     cardTemplate,
