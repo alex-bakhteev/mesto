@@ -68,7 +68,7 @@ export default class Card {
     }
 
     _setListenerButtonDelete() {
-        this._buttonDelete.addEventListener('click', () => { this._handleCleanVerify(this._delete.bind(this)); this._handleOpenVerify(this._cardID) });
+        this._buttonDelete.addEventListener('click', () => { this._handleOpenVerify(this._cardID); this._handleCleanVerify(this._delete.bind(this)); });
     }
 
     _setListenerClickImage() {

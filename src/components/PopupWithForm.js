@@ -20,21 +20,26 @@ export default class PopupWithForm extends Popup {
 
     toggleLoader(boolean) {
         if (boolean) {
-          this._buttonSubmit.classList.add('popup__submit_disabled');
-          this._buttonSubmit.textContent = 'Сохранение...';
+            this._buttonSubmit.classList.add('popup__submit_disabled');
+            this._buttonSubmit.textContent = 'Сохранение...';
         } else {
-          this._buttonSubmit.textContent = 'Сохранить';
-          this._buttonSubmit.classList.remove('popup__submit_disabled');
+            this._buttonSubmit.textContent = 'Сохранить';
+            this._buttonSubmit.classList.remove('popup__submit_disabled');
         }
-      }
+    }
 
     setEventListeners() {
         super.setEventListeners();
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
+            this.toggleLoader(true);
             this._getInputValues();
             this._handleSubmit(this._inputs);
-            this.close();
         });
+    }
+
+    close() {
+        super.close();
+        this._form.reset();
     }
 }

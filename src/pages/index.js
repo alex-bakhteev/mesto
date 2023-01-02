@@ -15,8 +15,6 @@ import {
     buttonEditProfile,
     buttonAddProfile,
     buttonEditAvatar,
-    formAdd,
-    formEditAvatar,
     nameInput,
     jobInput,
     cardTemplate,
@@ -44,6 +42,9 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
         userID.id = _id;
         cardsSection.renderElements(cards.reverse());
     })
+    .catch((err) => {
+        console.log(err);
+    });
 
 const userInfo = new UserInfo({
     nameSelector: '.profile__title',
@@ -96,8 +97,12 @@ function handleSubmitFormEdit(info) {
     api.editProfileInfo(info).then(({ name, about }) => {
         userInfo.setUserInfo(name, about);
     }).finally(() => {
-        validatorPopupEdit.disableButton();
+        popupEditProfile.close();
+        popupEditProfile.toggleLoader(false);
     })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 function handleSubmitFormEditAvatar(avatar) {
@@ -107,7 +112,6 @@ function handleSubmitFormEditAvatar(avatar) {
             userInfo.setAvatar(avatar);
         })
         .finally(() => {
-            formEditAvatar.reset();
             popupEditUserAvatar.close();
             popupEditUserAvatar.toggleLoader(false);
         })
@@ -123,8 +127,12 @@ function handleSubmitFormAdd(card) {
     })
         .finally(() => {
             validatorPopupAdd.disableButton();
-            formAdd.reset();
+            popupAddCard.close();
+            popupAddCard.toggleLoader(false);
         })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 function handleImageClick(caption, link) {
@@ -168,8 +176,11 @@ function handleDeleteCard(cardID, removeCard) {
             removeCard();
             popupVerify.close();
         })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 buttonEditProfile.addEventListener('click', () => { openPropfilePopup(); });
-buttonAddProfile.addEventListener('click', () => { popupAddCard.open(); validatorPopupAdd.clearInputError(); });
-buttonEditAvatar.addEventListener('click', () => { validatorPopupEditAvatar.clearInputError(); popupEditUserAvatar.open(); validatorPopupEditAvatar.disableButton();});
+buttonAddProfile.addEventListener('click', () => { popupAddCard.open(); validatorPopupAdd.clearInputError(); validatorPopupAdd.disableButton(); });
+buttonEditAvatar.addEventListener('click', () => { validatorPopupEditAvatar.clearInputError(); popupEditUserAvatar.open(); validatorPopupEditAvatar.disableButton(); });
