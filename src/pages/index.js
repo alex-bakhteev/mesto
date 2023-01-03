@@ -96,8 +96,8 @@ function openPropfilePopup() {
 function handleSubmitFormEdit(info) {
     api.editProfileInfo(info).then(({ name, about }) => {
         userInfo.setUserInfo(name, about);
-    }).finally(() => {
         popupEditProfile.close();
+    }).finally(() => {
         popupEditProfile.toggleLoader(false);
     })
         .catch((err) => {
@@ -110,9 +110,9 @@ function handleSubmitFormEditAvatar(avatar) {
         .editProfileAvatar(avatar)
         .then(({ avatar }) => {
             userInfo.setAvatar(avatar);
+            popupEditUserAvatar.close();
         })
         .finally(() => {
-            popupEditUserAvatar.close();
             popupEditUserAvatar.toggleLoader(false);
         })
         .catch((err) => {
@@ -124,10 +124,10 @@ function handleSubmitFormAdd(card) {
     api.addCard(card).then((data) => {
         const newCard = getCard(data);
         cardsSection.addItem(newCard);
+        popupAddCard.close();
     })
         .finally(() => {
             validatorPopupAdd.disableButton();
-            popupAddCard.close();
             popupAddCard.toggleLoader(false);
         })
         .catch((err) => {
