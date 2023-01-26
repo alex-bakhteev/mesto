@@ -19,4 +19,4 @@
 * Разместить production-билд на GitHub Pages (npm run deploy);
 
 
-Ссылка на GitHub Pages: [https://alex-bakhteev.github.io/mesto/].
+**Ссылка на GitHub Pages:** [https://alex-bakhteev.github.io/mesto/].
