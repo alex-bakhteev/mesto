@@ -17,7 +17,7 @@
 * Скачать или клонировать репозиторий;
 * Установить зависимости при помощи (npm - npm i);
 * Запустить в development-режиме (npm run dev);
-* Запустить сборку production-билда (npm run start);
+* Запустить сборку production-билда (npm run build);
 * Разместить production-билд на GitHub Pages (npm run deploy);
 
 
